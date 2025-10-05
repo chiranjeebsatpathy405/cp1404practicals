@@ -14,3 +14,6 @@ print(random.uniform(2.5, 5.5))  # line 3
 #Smallest possible number: 2.5
 #Largest possible number: 5.5
 
+#random number between 1 and 100 inclusive
+num_between1_100 = random.randint(1, 100)
+print(num_between1_100)
