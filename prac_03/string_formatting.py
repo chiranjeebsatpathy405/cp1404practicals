@@ -1,6 +1,6 @@
 name = "Trademill nordictrack"
 year = 2024
-cost = 1026.90
+cost = 1028.90
 
 
 
