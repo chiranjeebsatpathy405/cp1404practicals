@@ -1,5 +1,7 @@
 import random
 
+
+
 MAX_INCREASE = 0.175   # 17.5%
 MAX_DECREASE = 0.05    # 5%
 MIN_PRICE = 1.0        # minimum allowed price
