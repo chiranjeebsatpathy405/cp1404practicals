@@ -5,7 +5,6 @@ file = open("name.txt", "w")  # open in write mode
 file.write(name)
 file.close()
 
-
 # 2. greet the user
 file = open("name.txt", "r")  # open in read mode
 name_from_file = file.read().strip()
