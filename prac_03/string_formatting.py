@@ -17,13 +17,8 @@ print("I recently bought the fitness model {} would cost ${:,.3f}".format(name, 
 print(f"I recently bought the fitness model {name} would cost ${cost:,.3f}")
 
 # This loop uses enumerate, which is useful when you want both the index and value
-numbers = [1, 19, 123, 456, -25]
+numbers = [1, 3, 5, 8, 21]
 
 for i, number in enumerate(numbers, 1):
     print(f"Number {i} is {number:5}")
 
-# TODO: Use f-string formatting to produce the output:
-# 1922 Gibson L-5 CES for about $16,036!
-
-# TODO: Using a for loop with the range function and f-string formatting,
-# produce the following right-aligned output (DO NOT use a list):
