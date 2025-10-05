@@ -6,6 +6,7 @@ Answer the following questions:
 3. Could you change the code to avoid the possibility of a ZeroDivisionError?
 """
 
+
 try:
     numerator = int(input("Enter the numerator: "))
     denominator = int(input("Enter the denominator: "))
