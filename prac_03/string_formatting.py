@@ -37,4 +37,7 @@ print(f"{year} {name} for about ${cost:,.0f}!")
 # 1922 Gibson L-5 CES for about $16,036!
 
 # TODO: Using a for loop with the range function and f-string formatting,
+for power in range(0, 11):
+    result = 2 ** power
+    print(f"# 2 ^{power:>2} is {result:>4}")
 # produce the following right-aligned output (DO NOT use a list):
