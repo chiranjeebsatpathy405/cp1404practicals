@@ -9,7 +9,7 @@ def main():
 
     print_report(number_of_months,incomes)
 
-
+#Function to print monthly income
 def print_report(number_of_months, incomes):
     """This function will print report"""
     print("\nIncome Report\n-------------")
