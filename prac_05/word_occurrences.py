@@ -15,10 +15,10 @@ for word in words:
         word_counts[word] += 1
     else:
         word_counts[word] = 1
-
+sorted_counts =dict(sorted(word_counts.items()))
 # show the counts
 print("\nWord occurrences:")
-for word, count in word_counts.items():
+for word, count in sorted_counts.items():
     print(f"{word}: {count}")
 
     # Enter a string: this is a collection of words of nice words this is a fun thing it is
@@ -31,3 +31,4 @@ for word, count in word_counts.items():
    # words: 2
    # nice: 1
    # fun: 1
+
