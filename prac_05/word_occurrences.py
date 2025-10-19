@@ -16,10 +16,12 @@ for word in words:
     else:
         word_counts[word] = 1
 sorted_counts =dict(sorted(word_counts.items()))
-# show the counts
-print("\nWord occurrences:")
+
+# Determine the longest word for alignment
+max_word_length = max(len(word) for word in sorted_counts)
+
 for word, count in sorted_counts.items():
-    print(f"{word}: {count}")
+    print(word.ljust(max_word_length), str(count).rjust(5))
 
     # Enter a string: this is a collection of words of nice words this is a fun thing it is
     # Word occurrences:
