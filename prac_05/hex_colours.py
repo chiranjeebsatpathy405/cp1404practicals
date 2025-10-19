@@ -24,3 +24,4 @@ while colour_name != "":
         print("Invalid colour name")
     # Prompt again
     colour_name = input("Enter a colour name (or press Enter to quit): ").strip()
+    # Have run the code for Black and Bisque
