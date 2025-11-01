@@ -13,6 +13,12 @@ def main():
     my_car.drive(30)
     print(f"Car has fuel: {my_car.fuel}")
     print(my_car)
+    # New  'limo' Car object called
+    limo = Car(100)
+    print(f"Limo created with {limo.fuel} units of fuel.")
+    # Add 20 more units of fuel with add_fuel() method
+    limo.add_fuel(20)
+    print(f"After adding fuel, limo now has {limo.fuel} units of fuel.")
 
 
 main()
