@@ -19,6 +19,10 @@ def main():
     # Add 20 more units of fuel with add_fuel() method
     limo.add_fuel(20)
     print(f"After adding fuel, limo now has {limo.fuel} units of fuel.")
+    # Print the fuel amount in the car
+    print(f"Limo has now  {limo.fuel} units of fuel.")
+    # drive the car 115 km
+    distance_driven = limo.drive(115)
 
 
 main()
