@@ -1,5 +1,7 @@
 
 from programming_language import ProgrammingLanguage
+""" Estimate: 3 hours
+    Actual: 2 hours """
 def main():
 
     python = ProgrammingLanguage("Python", "Dynamic", True, 1991)
