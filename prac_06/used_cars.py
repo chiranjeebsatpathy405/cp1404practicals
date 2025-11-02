@@ -24,4 +24,6 @@ def main():
     print(limo)
 
 if __name__ == "__main__":
+    """ Estimate: 5 hours
+    Actual: 3 hours """
     main()
