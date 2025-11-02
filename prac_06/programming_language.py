@@ -13,5 +13,5 @@ class ProgrammingLanguage:
         return self.typing.lower() == "dynamic"
 
     def __str__(self):
-        """ This returns name of ProgrammingLanguage object."""
+        """ ProgrammingLanguage object is returned."""
         return f"{self.name}, {self.typing} Typing, Reflection={self.reflection}, First appeared in {self.year}"
