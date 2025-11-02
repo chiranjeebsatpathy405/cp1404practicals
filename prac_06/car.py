@@ -24,4 +24,4 @@ class Car:
 
     def __str__(self):
         # using the formatcar.py clas
-        return f"{self.name}, fuel={self.fuel}, odometer={self.odometer}"
+        return f"{self.name}, fuel={int(self.fuel)}, odometer={int(self.odometer)}"

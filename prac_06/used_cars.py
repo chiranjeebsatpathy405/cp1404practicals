@@ -5,7 +5,8 @@ This is why we name our folders with no spaces or capitals, as valid module name
 """
 
 from prac_06.car import Car
-
+""" Estimate: 5 hours
+    Actual: 3 hours """
 def main():
 
     # New 'limo' Car object is created
@@ -24,6 +25,5 @@ def main():
     print(limo)
 
 if __name__ == "__main__":
-    """ Estimate: 5 hours
-    Actual: 3 hours """
+
     main()
