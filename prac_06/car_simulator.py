@@ -1,5 +1,6 @@
 #car_simulator.py
-
+""" Estimate: 5 hours
+    Actual: 2 hours and 30 minutes"""
 from car import Car
 
 
