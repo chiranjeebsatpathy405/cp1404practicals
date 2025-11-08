@@ -1,5 +1,5 @@
 from guitar import Guitar
-
+# Copied from Prac_06
 """ Estimate: 2 hours
     Actual: 80 mins """
 def main():
