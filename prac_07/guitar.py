@@ -1,5 +1,5 @@
 from datetime import date
-
+# Copied from Prac_06
 class Guitar:
     """Guitar class with its details."""
     def __init__(self, name: str = "", year: int = 0, cost: float = 0.0):
