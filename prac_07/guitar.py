@@ -21,13 +21,10 @@ class Guitar:
     def is_vintage(self):
         """Return True if the guitar is 50 or more years old."""
         return self.get_age() >= 50
-if __name__ == "__main__":
-    my_guitar = Guitar("Gibson L-5 CES", 1922, 16035.40)
-    another_guitar = Guitar("Fender Stratocaster", 1954, 14000.00)
-    print(my_guitar)
-    print(f"Age: {my_guitar.get_age()} years")
-    print(f"Vintage: {my_guitar.is_vintage()}")
 
-    print(another_guitar)
-    print(f"Age: {another_guitar.get_age()} years")
-    print(f"Vintage: {another_guitar.is_vintage()}")
+    #Function to sort the list by year (oldest to newest) and display them in sorted order
+    def __lt__(self, other: "Guitar") -> bool:
+        """Order guitars by year (older first)."""
+        if not isinstance(other, Guitar):
+            return NotImplemented
+        return self.year < other.year
