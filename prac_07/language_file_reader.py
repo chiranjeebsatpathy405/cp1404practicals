@@ -1,88 +1,69 @@
 """
 CP1404/CP5632 Practical
-File and class example - opens/reads a file, stores in objects of custom class
-(contains multiple versions for demonstration: using csv and namedtuple)
+# Estimated time - 1 hour
+# Actual time taken - 2 hours
 """
 
 import csv
-from collections import namedtuple
-
 from programming_language import ProgrammingLanguage
-
-# Downloaded the language_file_reader.py file as per instruction in https://github.com/CP1404/Practicals/tree/master/prac_07
-def main():
-    """Read file of programming language details, save as objects, display."""
+def read_languages(csv_path: str):
+    """Read languages from CSV and return a list of ProgrammingLanguage objects."""
     languages = []
-    # Open the file for reading
-    in_file = open('languages.csv', 'r')
-    # File format is like: Language,Typing,Reflection,Year
-    # 'Consume' the first line (header) - we don't need its contents
-    in_file.readline()
-    # All other lines are language data
-    for line in in_file:
-        # print(repr(line))  # debugging
-        # Strip newline from end and split it into parts (CSV)
-        parts = line.strip().split(',')
-        # print(parts)  # debugging
-        # Reflection is stored as a string (Yes/No) and we want a Boolean
-        reflection = parts[2] == "Yes"
-        # Construct a ProgrammingLanguage object using the elements
-        # year should be an int
-        language = ProgrammingLanguage(parts[0], parts[1], reflection, int(parts[3]))
-        # Add the language we've just constructed to the list
-        languages.append(language)
-    # Close the file as soon as we've finished reading it
-    in_file.close()
+    #print("I am here")
+    with open(csv_path, newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            name = row['Language'].strip()
+            #print(name)
+            typing = row['Typing'].strip()
+           # print(typing)
+            # Allow 'Yes'/'No' or 'True'/'False'
+            reflection = row['Reflection'].strip().lower() in ("yes", "true", "1")
+           # print(reflection)
+            year = int(row['Year'])
+            pointer_arithmetic = row['PointerArithmetic'].strip().lower() in ("yes", "true", "1")
+            languages.append(ProgrammingLanguage(name, typing, reflection, year, pointer_arithmetic))
+        return languages
 
-    # Loop through and display all languages (using their str method)
-    for language in languages:
-        print(language)
+def run_tests():
+    """Basic sanity checks for ProgrammingLanguage."""
+    ruby = ProgrammingLanguage("Ruby", "Dynamic", True, 1995, False)
+    python = ProgrammingLanguage("Python", "Dynamic", True, 1991, False)
+    visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991, False)
+    cplusplus = ProgrammingLanguage("C++", "Static", False, 1983, True)
+    DotNet= ProgrammingLanguage(".NET", "Static", False, 2003, True)
 
-
-main()
-
-
-def using_csv():
-    """Language file reader version using the csv module."""
-    # First, open the file for reading - note: specify newline
-    # to avoid quoted \n in strings being considered a new record
-    in_file = open('languages.csv', 'r', newline='')
-    in_file.readline()
-    reader = csv.reader(in_file)  # use default dialect, Excel
-    for row in reader:
-        print(row)
-    in_file.close()
+    languages = [ruby, python, visual_basic, cplusplus,DotNet]
+    # __str__ check
+    print(python)
+    # is_dynamic check
+    dynamic_names = [lang.name for lang in languages if lang.is_dynamic()]
+    print("Dynamically typed:", ", ".join(dynamic_names))
+    # pointer arithmetic check
+    ptr_langs = [lang.name for lang in languages if lang.has_pointer_arithmetic()]
+    print("Pointer arithmetic:", ", ".join(ptr_langs))
 
 
-# using_csv()
+def main():
+    """Client code to demonstrate reading and simple queries."""
+    csv_path = 'languages.csv'
+    languages = read_languages(csv_path)
+    print("In Main")
+    print(languages)
+    print("All languages:")
+    for lang in languages:
+        print(" -", lang)
+
+    print("\nDynamically typed languages:")
+    for lang in languages:
+        if lang.is_dynamic():
+            print(" -", lang.name)
+
+    print("\nLanguages with pointer arithmetic:")
+    for lang in languages:
+        if lang.has_pointer_arithmetic():
+            print(" -", lang.name)
 
 
-def using_namedtuple():
-    """Language file reader version using a named tuple."""
-    in_file = open('languages.csv', 'r', newline='')
-    file_field_names = in_file.readline().strip().split(',')
-    print(file_field_names)
-    # Language will be a new subclass of the tuple data type class
-    Language = namedtuple('Language', 'name, typing, reflection, year')
-    reader = csv.reader(in_file)  # use default dialect, Excel
-
-    for row in reader:
-        # print(row)
-        language = Language._make(row)
-        print(repr(language))
-    in_file.close()
-
-
-# using_namedtuple()
-
-
-def using_csv_namedtuple():
-    """Language file reader version using both csv module and named tuple."""
-    Language = namedtuple('Language', 'name, typing, reflection, year')
-    in_file = open("languages.csv", "r")
-    in_file.readline()
-    for language in map(Language._make, csv.reader(in_file)):
-        print(language.name, 'was released in', language.year)
-        print(repr(language))
-
-# using_csv_namedtuple()
+if __name__ == '__main__':
+    main()
