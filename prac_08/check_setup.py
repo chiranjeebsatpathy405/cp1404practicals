@@ -10,7 +10,7 @@ from kivy.app import App
 from kivy.uix.button import Button
 import sys
 
-# setup test program
+# setup kivy test program
 class CheckSetupApp(App):
 
     def build(self):
