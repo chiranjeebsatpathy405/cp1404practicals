@@ -6,45 +6,44 @@ Lindsay Ward, IT@JCU
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.properties import StringProperty
 
-__author__ = 'Lindsay Ward'
+# CONSTANT conversion factor
+MILES_TO_KM = 1.6
 
-MILES_TO_KM = 1.60934
 
+class ConvertMilesKmApp(App):
+    # StringProperty so the label auto-updates
+    result_text = StringProperty("0.0")
 
-class MilesConverterApp(App):
-    """ MilesConverterApp is a Kivy App for converting miles to kilometres """
     def build(self):
-        """ build the Kivy app from the kv file """
         self.title = "Convert Miles to Kilometres"
-        self.root = Builder.load_file('convert_m_km_solution.kv')
-        return self.root
+        return Builder.load_file("convert_miles_km.kv")
 
-    def handle_calculate(self):
-        """ handle calculation (could be button press or other call), output result to label widget """
-        value = self.get_validated_miles()
-        result = value * MILES_TO_KM
-        self.root.ids.output_label.text = str(result)
+    # --- core logic -------------------------------------------------
+    def convert(self, miles_text: str) -> None:
+        """Convert miles in the TextInput to km and update result_text."""
+        miles = self._get_miles_value(miles_text)
+        km = miles * MILES_TO_KM
+        self.result_text = f"{km:.5f}"
 
-    def handle_increment(self, change):
+    def handle_increment(self, miles_text: str, amount: int) -> None:
         """
-        handle up/down button press, update the text input with new value, call calculation function
-        :param change: the amount to change
+        Increase/decrease the value of miles by 'amount'
         """
-        value = self.get_validated_miles() + change
-        self.root.ids.input_miles.text = str(value)
-        self.handle_calculate()
+        miles = self._get_miles_value(miles_text)
+        miles += amount
+        # update TextInput; its on_text will call convert()
+        self.root.ids.input_miles.text = str(miles)
 
-    def get_validated_miles(self):
-        """
-        get text input from text entry widget, convert to float
-        :return: 0 if error, float version of text if valid
-        """
+    # --- helpers ----------------------------------------------------
+    @staticmethod
+    def _get_miles_value(text: str) -> float:
         try:
-            value = float(self.root.ids.input_miles.text)
-            return value
-        except ValueError:
-            return 0
+            return float(text)
+        except (ValueError, TypeError):
+            return 0.0
 
 
-MilesConverterApp().run()
+
+ConvertMilesKmApp().run()

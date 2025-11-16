@@ -1,26 +1,68 @@
 BoxLayout:
     orientation: 'vertical'
+
+    # ---------- top row: TextInput + Up/Down buttons ----------
     BoxLayout:
         orientation: 'horizontal'
+        size_hint_y: 0.35
+
         TextInput:
             id: input_miles
-            text: '34'
-            font_size: 48
-            on_text: app.handle_calculate()
+            text: "0"
+            multiline: False
+            font_size: 64
+            on_text: app.convert(self.text)    # live update as text changes
+
         BoxLayout:
             orientation: 'vertical'
             size_hint_x: 0.25
+
             Button:
-                text: 'Up'
-                on_press: app.handle_increment(1)
+                text: "Up"
+                font_size: 32
+                background_color: .3, .3, .3, 1
+                color: 1, 1, 1, 1
+                on_press: app.handle_increment(input_miles.text, 1)
+
             Button:
-                text: 'Down'
-                on_press: app.handle_increment(-1)
-#    Button:
-#        text: 'Convert m to km'
-#        on_press: app.handle_calculate()
+                text: "Down"
+                font_size: 32
+                background_color: .3, .3, .3, 1
+                color: 1, 1, 1, 1
+                on_press: app.handle_increment(input_miles.text, -1)
+
+    # ---------- middle: Convert button (STAGE 1) ----------
+    # For STAGE 1 (button-based conversion), UN-comment this Button
+    # and comment out the Label below.
+    #
+    # Button:
+    #     text: "Convert miles to km"
+    #     size_hint_y: 0.25
+    #     background_color: .3, .3, .3, 1
+    #     color: 1, 1, 1, 1
+    #     on_press: app.convert(input_miles.text)
+
+    # For STAGE 2 (live conversion), we just show a grey bar label:
     Label:
-        id: output_label
-        font_size: 48
-        text: '54.717'
-        color: (1, 1, 0, 1)
+        text: "Convert miles to km"
+        size_hint_y: 0.25
+        color: 1, 1, 1, 1
+        canvas.before:
+            Color:
+                rgba: .3, .3, .3, 1    # dark grey background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    # ---------- bottom: result label (black with yellow text) ----------
+    Label:
+        text: app.result_text
+        font_size: 64
+        color: 1, 1, 0, 1            # yellow
+        size_hint_y: 0.4
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1      # black background
+            Rectangle:
+                pos: self.pos
+                size: self.size
