@@ -67,6 +67,7 @@ def run_tests():
     assert car.fuel == 0, "Car does not set default fuel correctly"
     car = Car(fuel=10)
     assert car.fuel == 10, "Car does not set fuel correctly when value is passed"
+    print("All tests passed.")
 
 run_tests()
 doctest.testmod()
