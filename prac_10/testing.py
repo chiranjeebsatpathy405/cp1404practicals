@@ -6,12 +6,12 @@ Testing code using assert and doctest
 import doctest
 from prac_06.car import Car
 
-
+# TODO: 1.
 def repeat_string(s, n):
     """Repeat string s, n times, with spaces in between."""
-    return s * n
+    return " ".join([s] * n)
 
-
+# TODO: 4.
 def is_long_word(word, length=5):
     """
     Determine if the word is as long or longer than the length passed in
@@ -22,9 +22,26 @@ def is_long_word(word, length=5):
     >>> is_long_word("Python", 6)
     True
     """
-    return len(word) > length
+    return len(word) >= length
 
-
+# TODO: 5.
+def format_sentence(phrase):
+    """
+    Format a phrase as a sentence: capitalized, ending with a single full stop.
+    >>> format_sentence("hello")
+    'Hello.'
+    >>> format_sentence("It is an ex parrot.")
+    'It is an ex parrot.'
+    >>> format_sentence("good morning")
+    'Good morning.'
+    """
+    phrase = phrase.strip()
+    # Capitalize first letter
+    phrase = phrase[0].upper() + phrase[1:]
+    # Ensure it ends with a single '.'
+    if not phrase.endswith('.'):
+        phrase += '.'
+    return phrase
 def run_tests():
     """Run the tests on the functions."""
     # assert test with no message - used to see if the function works properly
@@ -38,17 +55,21 @@ def run_tests():
     # assert test with custom message,
     # used to see if Car's init method sets the odometer correctly
     # this should pass (no output)
-    car = Car()
-    assert car._odometer == 0, "Car does not set odometer correctly"
+    #car = Car()
+    #assert car._odometer == 0, "Car does not set odometer correctly"
 
     # TODO: 2. write assert statements to show if Car sets the fuel correctly
     # Note that Car's __init__ function sets the fuel in one of two ways:
     # using the value passed in or the default
     # You should test both of these
+    #car = Car(fuel=10)
+    car = Car()
+    assert car.fuel == 0, "Car does not set default fuel correctly"
     car = Car(fuel=10)
-
+    assert car.fuel == 10, "Car does not set fuel correctly when value is passed"
 
 run_tests()
+doctest.testmod()
 
 # TODO: 3. Uncomment the following line and run the doctests
 # (PyCharm may see your >>> doctest comments and run doctests anyway.)
@@ -58,6 +79,7 @@ run_tests()
 # (Don't change the tests, change the function!)
 
 # TODO: 5. Write and test a function to format a phrase as a sentence,
+
 # starting with a capital and ending with a single full stop.
 # Important: start with a function header and just use pass as the body
 # then add doctests for 3 tests:
